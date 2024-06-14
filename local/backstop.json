@@ -67,7 +67,6 @@
     ],
     "gotoParameters": { "waitUntil": "networkidle0" }
   },
-  "asyncCaptureLimit": 8,
   "debug": false,
   "debugWindow": false,
   "custom": {
