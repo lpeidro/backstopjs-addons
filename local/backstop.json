@@ -21,18 +21,33 @@
   "onReadyScript": "onReady.js",
   "scenarios": [
     {
-      "label": "Scenario name",
+      "label": "Click an wait for selector example",
       "url": "http://something.com/page-url",
       "readySelector": "body",
-      "scrollToSelector": ".paragraph.image-text.image-text--66-33.image-text--right",
-      "login_wrapper": ".user-login-form",
-      "user": "demo user",
-      "pass": "1234",
-      "login_redirect": "http://energies.ddev.site/en/node/20/edit",
-      "clickSelector": ".sidebar-offcanvas__button:nth-child(1)",
+      "clickSelector": ".element-to-click",
+      "waitForSelectorAfterInteraction": ".selector-to-wait-for-after-click",
+    },
+    {
+      "label": "Scroll to element example",
+      "url": "http://something.com/page-url",
+      "readySelector": "body",
+      "scrollToSelector": ".element-to-scroll-to",
       "postInteractionWait": 500,
-      "waitForSelectorAfterInteraction": ".sidebar-offcanvas__content:not(.loading-content) .sidebar-offcanvas-item",
-      "stopAnimationsSelectors": ".sidebar-offcanvas, .sidebar-offcanvas__menu"
+    },
+    {
+      "label": "Stop animations example",
+      "url": "http://something.com/page-url",
+      "readySelector": "body",
+      "stopAnimationsSelectors": ".selectors-to-stop-animations"
+    },
+    {
+      "label": "Login and go to page example",
+      "url": "http://something.com/page-url",
+      "readySelector": "body",
+      "login_wrapper": ".form-selector",
+      "login_user": "user name to override the global one",
+      "login_pass": "password to override the global one",
+      "login_redirect": "page_url/to/go/after/login"
     }
   ],
   "paths": {
@@ -56,6 +71,9 @@
   "debug": false,
   "debugWindow": false,
   "custom": {
-    "commonScriptsPath": "/src/tests/common"
+    "commonScriptsPath": "/src/tests/common",
+    "login_user": "global user name",
+    "login_pass": "global user pass",
+    "responsiveFontSizeSelector": ".selectors-to-lock-the-font-size-on-all-the-scenarios"
   }
 }
