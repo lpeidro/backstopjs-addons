@@ -1,3 +1,3 @@
 module.exports = async (page, scenario, vp, ir, Engine, config) => {
-  await require('./loadCookies')(page, scenario);
+  await require(config.custom.commonScriptsPath + '/loadCookies')(page, scenario);
 };
