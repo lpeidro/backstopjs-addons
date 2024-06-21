@@ -1,5 +1,5 @@
 # BackstopJS Addons
-A library for BackstopJS that extends the default functionality of BackstopJS.
+A library that extends the default functionality of BackstopJS.
 
 ### Features include
 - Scenario setup to avoid common loading issues

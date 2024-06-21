@@ -32,7 +32,7 @@
       "url": "http://something.com/page-url",
       "readySelector": "body",
       "scrollToSelector": ".element-to-scroll-to",
-      "postInteractionWait": 500,
+      "postInteractionWait": 500
     },
     {
       "label": "Stop animations example",
@@ -44,10 +44,10 @@
       "label": "Login and go to page example",
       "url": "http://something.com/page-url",
       "readySelector": "body",
-      "login_wrapper": ".form-selector",
-      "login_user": "user name to override the global one",
-      "login_pass": "password to override the global one",
-      "login_redirect": "page_url/to/go/after/login"
+      "loginWrapperSelector": ".form-selector",
+      "loginUser": "user name to override the global one",
+      "loginPass": "password to override the global one",
+      "loginRedirectTo": "page_url/to/go/after/login"
     }
   ],
   "paths": {
@@ -69,10 +69,10 @@
   },
   "debug": false,
   "debugWindow": false,
-  "custom": {
-    "commonScriptsPath": "/src/tests/common",
-    "login_user": "global user name",
-    "login_pass": "global user pass",
-    "responsiveFontSizeSelector": ".selectors-to-lock-the-font-size-on-all-the-scenarios"
+  "backstopjsAddons": {
+    "commonScriptsPath": "/path/to/backstopjs-addons",
+    "loginUser": "global user name",
+    "loginPass": "global user pass",
+    "responsiveFontSizeSelector": ".selectors-to-lock-the .font-size-on .all-the-scenarios"
   }
 }
