@@ -100,4 +100,7 @@ module.exports = async (page, scenario, config) => {
       return true;
     });
   });
+
+  // Wait for assets to load.
+  await page.waitForNetworkIdle();
 }
