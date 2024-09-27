@@ -11,4 +11,5 @@ A library that extends the default functionality of BackstopJS.
     - Improve Slick slider captures
 - Login and navigate to a specific page
 - Wait for selector after interaction
+- Custom user agent by viewport
 
