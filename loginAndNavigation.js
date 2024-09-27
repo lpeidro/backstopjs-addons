@@ -13,8 +13,19 @@ module.exports = async(page, scenario, config) => {
 
       if (scenario.loginRedirectTo) {
         await page.goto(scenario.loginRedirectTo, {
-          waitUntil: 'networkidle0',
+          waitUntil: 'networkidle0'
         });
+      }
+
+      // Apply the removeSelectors to the loaded page.
+      if (scenario.removeSelectors) {
+        await page.evaluate((selectors) => {
+          var elements = document.querySelectorAll(selectors);
+
+          elements.forEach((element) => {
+            element.remove();
+          });
+        }, scenario.removeSelectors);
       }
     }
   }
