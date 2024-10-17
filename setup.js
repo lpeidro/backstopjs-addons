@@ -84,15 +84,6 @@ module.exports = async (page, scenario, config) => {
       style.setAttribute('type', 'text/css');
       style.appendChild(document.createTextNode(css));
     }
-
-    // Avoid responsive font sizes.
-
-    const heading_selectors = config.backstopjsAddons.responsiveFontSizeSelector ?? "h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, .lead, .display-1, .display-2, .display-3, .display-4, .display-5, .display-6, .blockquote, .btn, .fs-1, .fs-2, .fs-3, .fs-4, .fs-6, .fs-6";
-    document.querySelectorAll(heading_selectors).forEach((heading) => {
-      let style = window.getComputedStyle(heading, null).getPropertyValue('font-size');
-      let fontSize = parseFloat(style).toFixed(2);
-      heading.style.fontSize = fontSize + "px";
-    });
   }, config);
 
   await page.waitForFunction(() => {

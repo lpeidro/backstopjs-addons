@@ -63,7 +63,8 @@
     "args": [
       "--ignore-certificate-errors",
       "--no-sandbox",
-      "--disable-setuid-sandbox"
+      "--disable-setuid-sandbox",
+      "--font-render-hinting=none"
     ],
     "gotoParameters": { "waitUntil": "networkidle0" }
   },
@@ -72,7 +73,6 @@
   "backstopjsAddons": {
     "path": "/path/to/backstopjs-addons",
     "loginUser": "global user name",
-    "loginPass": "global user pass",
-    "responsiveFontSizeSelector": ".selectors-to-lock-the .font-size-on .all-the-scenarios"
+    "loginPass": "global user pass"
   }
 }
