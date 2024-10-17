@@ -1,8 +1,8 @@
 const fs = require('fs');
 
-module.exports = async (page, scenario) => {
+module.exports = async (page, scenario, config) => {
   let cookies = [];
-  const cookiePath = scenario.cookiePath;
+  const cookiePath = scenario.cookiePath ?? config.cookiePath;
 
   // READ COOKIES FROM FILE IF EXISTS
   if (fs.existsSync(cookiePath)) {

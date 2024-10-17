@@ -19,6 +19,7 @@
   ],
   "onBeforeScript": "onBefore.js",
   "onReadyScript": "onReady.js",
+  "cookiePath": "cookies.json",
   "scenarios": [
     {
       "label": "Click an wait for selector example",
