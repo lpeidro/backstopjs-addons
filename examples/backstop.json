@@ -25,7 +25,7 @@
       "url": "http://something.com/page-url",
       "readySelector": "body",
       "clickSelector": ".element-to-click",
-      "waitForSelectorAfterInteraction": ".selector-to-wait-for-after-click",
+      "waitForSelectorAfterInteraction": ".selector-to-wait-for-after-click"
     },
     {
       "label": "Scroll to element example",
