@@ -14,6 +14,7 @@ module.exports = async (page, scenario, config) => {
     }, scenario);
   }
 
+  // Disable filters.
   if (scenario.disableFiltersSelector) {
     await page.waitForSelector('head');
     await page.evaluate(async(scenario) => {
@@ -28,6 +29,7 @@ module.exports = async (page, scenario, config) => {
     }, scenario);
   }
 
+  // Common actions
   await page.evaluate(async(config) => {
     // Avoid lazy css load.
     document.querySelectorAll('link[rel="stylesheet"][data-onload-media][onload]').forEach((stylelink) => {
@@ -86,6 +88,7 @@ module.exports = async (page, scenario, config) => {
     }
   }, config);
 
+  // Wait for fonts to load.
   await page.waitForFunction(() => {
     return document.fonts.ready.then(() => {
       return true;
