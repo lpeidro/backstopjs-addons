@@ -35,10 +35,11 @@
       "postInteractionWait": 500
     },
     {
-      "label": "Stop animations example",
+      "label": "Stop animations example and delay screenshot",
       "url": "http://something.com/page-url",
       "readySelector": "body",
-      "stopAnimationsSelectors": ".selectors-to-stop-animations"
+      "stopAnimationsSelectors": ".selectors-to-stop-animations",
+      "beforeScreenshotDelay": 2000
     },
     {
       "label": "Login and go to page example",

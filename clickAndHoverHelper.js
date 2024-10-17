@@ -3,7 +3,7 @@ module.exports = async (page, scenario) => {
   const clickSelector = scenario.clickSelectors || scenario.clickSelector;
   const keyPressSelector = scenario.keyPressSelectors || scenario.keyPressSelector;
   const scrollToSelector = scenario.scrollToSelector;
-  const postInteractionWait = scenario.postInteractionWait; // selector [str] | ms [int]
+  const beforeScreenshotDelay = scenario.postInteractionWait || scenario.beforeScreenshotDelay; // selector [str] | ms [int]
 
   if (keyPressSelector) {
     for (const keyPressSelectorItem of [].concat(keyPressSelector)) {
@@ -37,10 +37,10 @@ module.exports = async (page, scenario) => {
     await page.waitForSelector(scenario.waitForSelectorAfterInteraction);
   }
 
-  if (postInteractionWait) {
+  if (beforeScreenshotDelay) {
     // Workaround to have a waitForTimeout here.
     try {
-      await page.waitForFunction(() => {}, {timeout: postInteractionWait});
+      await page.waitForFunction(() => {}, {timeout: beforeScreenshotDelay});
     } catch (e) {}
   }
 };
