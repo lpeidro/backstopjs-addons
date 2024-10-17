@@ -49,6 +49,12 @@
       "loginUser": "user name to override the global one",
       "loginPass": "password to override the global one",
       "loginRedirectTo": "page_url/to/go/after/login"
+    },
+    {
+      "label": "Hide iframe content example",
+      "url": "http://something.com/page-url",
+      "readySelector": "body",
+      "hideIframeContent": ".iframe-container-selector, .iframe-container-selector-2"
     }
   ],
   "paths": {

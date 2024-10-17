@@ -29,6 +29,23 @@ module.exports = async (page, scenario, config) => {
     }, scenario);
   }
 
+  // Hide iframe content.
+  if (scenario.hideIframeContent) {
+    await page.evaluate(async(scenario) => {
+      const iframeContainers = document.querySelectorAll(scenario.hideIframeContent);
+
+      iframeContainers.forEach((iframeContainer) => {
+        const iframe = iframeContainer.querySelector('iframe');
+        if (iframe) {
+          iframe.src = '';
+          iframe.style.background = "lightgray";
+          iframeContainer.style.position = 'relative';
+          iframeContainer.innerHTML += '<div style="position: absolute; left: 0; right: 0; top: 50%; width: 100%; text-align: center; font-size: 3rem;">Iframe</div>';
+        }
+      });
+    }, scenario);
+  }
+
   // Common actions
   await page.evaluate(async(config) => {
     // Avoid lazy css load.
