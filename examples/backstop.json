@@ -74,7 +74,7 @@
       "--disable-setuid-sandbox",
       "--font-render-hinting=none"
     ],
-    "gotoParameters": { "waitUntil": "networkidle0" }
+    "gotoParameters": { "waitUntil": ["load", "networkidle0"] }
   },
   "debug": false,
   "debugWindow": false,
