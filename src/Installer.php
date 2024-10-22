@@ -22,10 +22,12 @@ class Installer {
     $root = $composer->getConfig()->get('vendor-dir') . '/..';
     $destination = $root . '/tests/backstopjs/common/libraries/backstopjs-addons';
 
-    // Create the folders if they don't exist of the destination that is a folder
-    if (!file_exists($destination)) {
+    if (is_dir($destination)) {
+      self::deleteDirectoryContents($source, $destination);
+    } else {
       mkdir($destination, 0755, TRUE);
     }
+
     self::copyFiles($source, $destination);
   }
 
@@ -49,6 +51,25 @@ class Installer {
       }
       else {
         copy($source . '/' . $file, $destination . '/' . $file);
+      }
+    }
+  }
+
+  /**
+   * Delete directory content.
+   *
+   * @param string $dir
+   *   The destination folder.
+   */
+  private static function deleteDirectoryContents($dir) {
+    $files = array_diff(scandir($dir), array('.', '..'));
+    foreach ($files as $file) {
+      $filePath = $dir . '/' . $file;
+      if (is_dir($filePath)) {
+        self::deleteDirectoryContents($filePath);
+        rmdir($filePath);
+      } else {
+        unlink($filePath);
       }
     }
   }
