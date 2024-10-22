@@ -52,7 +52,7 @@ class InstallerPlugin  implements PluginInterface, EventSubscriberInterface {
     $destination = $root . '/tests/backstopjs/common/libraries/backstopjs-addons';
 
     if (is_dir($destination)) {
-      self::deleteDirectoryContents($source, $destination);
+      self::deleteDirectoryContents($destination);
     } else {
       mkdir($destination, 0755, TRUE);
     }
