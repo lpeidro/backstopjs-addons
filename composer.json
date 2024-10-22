@@ -3,5 +3,18 @@
     "description": "Metadrop custom backstopjs scripts",
     "type": "library",
     "minimum-stability": "dev",
-    "require": {}
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Metadrop\\BackstopjsAddons\\": "src/"
+        }
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "Metadrop\\BackstopjsAddons\\Installer::MoveFiles"
+        ],
+        "post-update-cmd": [
+            "Metadrop\\BackstopjsAddons\\Installer::MoveFiles"
+        ]
+    }
 }
