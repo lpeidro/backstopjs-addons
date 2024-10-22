@@ -12,7 +12,7 @@ use Composer\Script\ScriptEvents;
 /**
  * Composer scripts for the BackstopJS Addons during installation.
  */
-class InstallerPlugin  implements PluginInterface, EventSubscriberInterfac {
+class InstallerPlugin  implements PluginInterface, EventSubscriberInterface {
 
   public function activate(Composer $composer, IOInterface $io): void
   {
