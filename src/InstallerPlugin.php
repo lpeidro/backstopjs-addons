@@ -2,12 +2,41 @@
 
 namespace Metadrop\BackstopjsAddons;
 
+use Composer\Composer;
+use Composer\EventDispatcher\EventSubscriberInterface;
+use Composer\IO\IOInterface;
+use Composer\Plugin\PluginInterface;
 use Composer\Script\Event;
+use Composer\Script\ScriptEvents;
 
 /**
  * Composer scripts for the BackstopJS Addons during installation.
  */
-class Installer {
+class InstallerPlugin  implements PluginInterface, EventSubscriberInterface {
+
+  public function activate(Composer $composer, IOInterface $io): void
+  {
+    // noop
+  }
+
+  public function deactivate(Composer $composer, IOInterface $io): void
+  {
+    // noop
+  }
+
+  public function uninstall(Composer $composer, IOInterface $io): void
+  {
+    // noop
+  }
+
+
+  public static function getSubscribedEvents()
+  {
+    return [
+      ScriptEvents::POST_INSTALL_CMD => 'MoveFiles',
+      ScriptEvents::POST_UPDATE_CMD => 'MoveFiles',
+    ];
+  }
 
   /**
    * Move the BackstopJS Addons files to the tests folder.
@@ -15,7 +44,7 @@ class Installer {
    * @param \Composer\Script\Event $event
    *   The Composer event.
    */
-  public static function MoveFiles(Event $event) {
+  public function MoveFiles(Event $event) {
     $composer = $event->getComposer();
 
     $source = $composer->getConfig()->get('vendor-dir') . '/metadrop/backstopjs-addons/addons';
@@ -39,7 +68,7 @@ class Installer {
    * @param string $destination
    *   The destination folder.
    */
-  private static function copyFiles($source, $destination) {
+  private function copyFiles($source, $destination) {
     $files = scandir($source);
     foreach ($files as $file) {
       if ($file == '.' || $file == '..') {
@@ -61,7 +90,7 @@ class Installer {
    * @param string $dir
    *   The destination folder.
    */
-  private static function deleteDirectoryContents($dir) {
+  private function deleteDirectoryContents($dir) {
     $files = array_diff(scandir($dir), array('.', '..'));
     foreach ($files as $file) {
       $filePath = $dir . '/' . $file;
