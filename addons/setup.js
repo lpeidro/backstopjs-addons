@@ -46,7 +46,6 @@ module.exports = async (page, scenario, config) => {
     }, scenario);
   }
 
-  // Common actions
   await page.evaluate(async(config) => {
     // Avoid lazy css load.
     document.querySelectorAll('link[rel="stylesheet"][data-onload-media][onload]').forEach((stylelink) => {
@@ -72,27 +71,27 @@ module.exports = async (page, scenario, config) => {
       iframe.loading = 'eager';
     });
 
-    // Slick refresh to avoid minimal changes.
+    if (typeof $ == 'undefined' && typeof jQuery == 'function') {
+      window.$ = jQuery;
+    }
     const slickCarousels = document.querySelectorAll('.slick-slider');
     slickCarousels.forEach((carousel) => {
-      jQuery(carousel).slick('setPosition');
 
       // Avoid autoplay in carousels.
-      if (jQuery(carousel).slick('slickGetOption', 'autoplay')) {
-        jQuery(carousel).slick('slickSetOption', {
-          'autoplay': false,
+      if ($(carousel).slick('slickGetOption', 'autoplay')) {
+        $(carousel).slick('slickSetOption', {
           'speed': 0,
+          'fade': false,
           'infinite': false
-        }, true);
-        jQuery(carousel).slick('slickGoTo', 0, false);
-
-        // Sometimes slick doesn't get the changes, for these cases the
-        // carrousel is rebuild.
-        if (jQuery(carousel).slick('slickCurrentSlide') > 0) {
-          let options = jQuery(carousel).slick('getSlick').options;
-          jQuery(carousel).slick('unslick').slick(options);
-        }
+        }, false);
+        $(carousel).on('afterChange', function (event, slick) {
+          slick.slickSetOption({
+            'autoplay': false,
+          }, true);
+        });
       }
+
+      $(carousel).slick('slickGoTo', 0, true);
     });
     if (slickCarousels.length > 0) {
       const head = document.head || document.getElementsByTagName('head')[0];
