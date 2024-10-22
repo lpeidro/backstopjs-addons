@@ -17,9 +17,6 @@ class Installer {
    */
   public static function MoveFiles(Event $event) {
     $composer = $event->getComposer();
-    $package = $event->getOperation()->getPackage();
-
-    //$extra = $package->getExtra();
 
     $source = $composer->getConfig()->get('vendor-dir') . '/metadrop/backstopjs-addons/addons';
     $root = $composer->getConfig()->get('vendor-dir') . '/..';
