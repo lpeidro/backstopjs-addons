@@ -47,9 +47,16 @@ class InstallerPlugin  implements PluginInterface, EventSubscriberInterface {
   public function MoveFiles(Event $event) {
     $composer = $event->getComposer();
 
+    // Source
     $source = $composer->getConfig()->get('vendor-dir') . '/metadrop/backstopjs-addons/addons';
+
+    // Destination
     $root = $composer->getConfig()->get('vendor-dir') . '/..';
-    $destination = $root . '/tests/backstopjs/common/libraries/backstopjs-addons';
+
+    $extra = $composer->getPackage()->getExtra();
+    $backstop_addons_extras = $extra['backstop-addons'] ?? [];
+    $destination = $backstop_addons_extras['destination'] ?? 'tests/backstopjs/common/libraries/backstopjs-addons';
+    $destination = "{$root}/{$destination}";
 
     if (is_dir($destination)) {
       self::deleteDirectoryContents($destination);
